@@ -13,6 +13,13 @@ macro_rules! downcida_err {
     };
 }
 
+#[macro_export]
+macro_rules! download_track {
+    ($spotify_id:expr, $output_dir:expr, $country:expr, $format:expr) => {
+        Downcida::download($spotify_id, $output_dir, $country, $format).await
+    };
+}
+
 pub struct Downcida;
 
 #[derive(Debug, Clone, Copy)]
