@@ -12,6 +12,7 @@ authors = ["PandaDEV"]
 reqwest = { version = "0.12.7", features = ["json"] }
 serde_json = "1.0.97"
 tokio = { version = "1.28.2", features = ["full"] }
+indicatif = "0.17.8"
 
 [lib]
 name = "downcida"
