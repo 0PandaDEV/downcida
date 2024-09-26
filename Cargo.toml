@@ -1,10 +1,11 @@
 [package]
 name = "downcida"
 version = "0.1.0"
-description = "A Rust crate to download audio files using the Lucida API"
 edition = "2021"
+description = "A Rust crate to download audio files using the Lucida API"
 license = "MIT"
 repository = "https://github.com/0pandadev/downcida"
+readme = "README.md"
 authors = ["PandaDEV"]
 
 [dependencies]
