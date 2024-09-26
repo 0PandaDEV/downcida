@@ -2,12 +2,19 @@ use reqwest::Client;
 use serde_json::Value;
 use std::fs::File;
 use std::io::Write;
-use std::path::Path;
+use std::path::PathBuf;
+
+#[macro_export]
+macro_rules! downcida_err {
+    ($($arg:tt)*) => {
+        Err(Box::new(std::io::Error::new(std::io::ErrorKind::Other, format!($($arg)*))))
+    };
+}
 
 pub struct Downcida;
 
 impl Downcida {
-    pub async fn download(spotify_id: &str, country: Option<&str>) -> Result<String, Box<dyn std::error::Error>> {
+    pub async fn download(spotify_id: &str, output_dir: PathBuf, country: Option<&str>) -> Result<PathBuf, Box<dyn std::error::Error>> {
         let client = Client::new();
         let spotify_url = format!("https://open.spotify.com/track/{}", spotify_id);
         let country = country.unwrap_or("auto");
@@ -42,7 +49,7 @@ impl Downcida {
 
         if !initial_response["success"].as_bool().unwrap_or(false) {
             let error_message = initial_response["error"].as_str().unwrap_or("Unknown error");
-            return Err(format!("Initial request failed: {}. Please check the Spotify ID and try again.", error_message).into());
+            return downcida_err!("Initial request failed: {}. Please check the Spotify ID and try again.", error_message);
         }
 
         let handoff = initial_response["handoff"].as_str().ok_or("No handoff value in response")?;
@@ -59,7 +66,7 @@ impl Downcida {
 
             if completion_response["status"].as_str() == Some("error") {
                 let error_message = completion_response["message"].as_str().unwrap_or("Unknown error");
-                return Err(format!("API request failed: {}", error_message).into());
+                return downcida_err!("API request failed: {}", error_message);
             }
 
             tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
@@ -69,13 +76,14 @@ impl Downcida {
         let mut download_response = client.get(&download_url).send().await?;
 
         let file_name = format!("{}.flac", handoff);
-        let path = Path::new(&file_name);
-        let mut file = File::create(path)?;
+        let output_path = output_dir.join(&file_name);
+
+        let mut file = File::create(&output_path)?;
 
         while let Some(chunk) = download_response.chunk().await? {
             file.write_all(&chunk)?;
         }
 
-        Ok(file_name)
+        Ok(output_path)
     }
 }
