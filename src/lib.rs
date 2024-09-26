@@ -14,6 +14,37 @@ macro_rules! downcida_err {
 pub struct Downcida;
 
 impl Downcida {
+    /// Downloads a track from Spotify and saves it as a FLAC file.
+    ///
+    /// # Arguments
+    ///
+    /// * `spotify_id` - A string slice that holds the Spotify track ID.
+    /// * `output_dir` - A PathBuf representing the directory where the downloaded file will be saved.
+    /// * `country` - An optional string slice specifying the country code for content restrictions.
+    ///
+    /// # Example
+    ///
+    /// ```
+    /// use downcida::Downcida;
+    /// use std::path::PathBuf;
+    ///
+    /// #[tokio::main]
+    /// async fn main() {
+    ///     let spotify_id = "5xPcP28rWbFUlYDOhcH58l";
+    ///     let output_dir = PathBuf::from(".");
+    ///     let country = Some("US");
+    ///
+    ///     match Downcida::download(spotify_id, output_dir, country).await {
+    ///         Ok(file_path) => println!("Download completed: {}", file_path.display()),
+    ///         Err(e) => eprintln!("Error: {}", e),
+    ///     }
+    /// }
+    /// ```
+    ///
+    /// # Errors
+    ///
+    /// This function will return an error if the download process fails at any stage,
+    /// such as network issues, API errors, or file system problems.
     pub async fn download(spotify_id: &str, output_dir: PathBuf, country: Option<&str>) -> Result<PathBuf, Box<dyn std::error::Error>> {
         let client = Client::new();
         let spotify_url = format!("https://open.spotify.com/track/{}", spotify_id);
