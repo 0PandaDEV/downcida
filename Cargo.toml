@@ -8,12 +8,9 @@ repository = "https://github.com/0pandadev/downcida"
 authors = ["PandaDEV"]
 
 [dependencies]
-base64 = "0.22.1"
 reqwest = { version = "0.12.7", features = ["json"] }
-serde = { version = "1.0.164", features = ["derive"] }
 serde_json = "1.0.97"
 tokio = { version = "1.28.2", features = ["full"] }
-urlencoding = "2.1.3"
 
 [lib]
 name = "downcida"
