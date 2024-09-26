@@ -69,20 +69,13 @@ impl Downcida {
     /// # Example
     ///
     /// ```
-    /// use downcida::{AudioFormat, Downcida};
-    /// use std::path::PathBuf;
-    ///
+    /// use downcida::{Downcida, AudioFormat};
+    /// use std::env;
+
     /// #[tokio::main]
-    /// async fn main() {
-    ///     let spotify_id = "5xPcP28rWbFUlYDOhcH58l";
-    ///     let output_dir = PathBuf::from(".");
-    ///     let country = Some("US");
-    ///     let format = AudioFormat::FLAC;
-    ///
-    ///     match Downcida::download(spotify_id, output_dir, country, format).await {
-    ///         Ok((file_path, duration)) => println!("Download completed: {} in {} ms", file_path.display(), duration),
-    ///         Err(e) => eprintln!("Error: {}", e),
-    ///     }
+    /// async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    ///     Downcida::download("5xPcP28rWbFUlYDOhcH58l", env::current_dir()?, Some("US"), AudioFormat::FLAC).await?;
+    ///     Ok(())
     /// }
     /// ```
     ///

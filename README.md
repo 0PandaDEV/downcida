@@ -27,18 +27,12 @@ downcida = "0.1.2"
 Here's a basic example of how to use Downcida:
 
 ```rs
-use downcida::Downcida;
-use std::path::PathBuf;
+use downcida::{Downcida, AudioFormat};
+use std::env;
 
 #[tokio::main]
-async fn main() {
-  let spotify_id = "5xPcP28rWbFUlYDOhcH58l"; // Replace with your Spotify track ID
-  let output_dir = PathBuf::from("downloads"); // Set the folder where the flac file will be saved
-  let country = Some("US"); // Optional: specify a country, or use None for auto
-
-  match Downcida::download(spotify_id, output_dir, country).await {
-    Ok(file_path) => println!("Download completed successfully. File saved as: {}", file_path.display()),
-    Err(e) => eprintln!("Error: {}", e),
-  }
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    Downcida::download("5xPcP28rWbFUlYDOhcH58l", env::current_dir()?, Some("US"), AudioFormat::FLAC).await?;
+    Ok(())
 }
 ```
