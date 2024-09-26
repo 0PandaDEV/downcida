@@ -4,9 +4,13 @@ Downcida is a Rust crate that allows you to download Spotify tracks using the [L
 
 ## Features
 
-- Download Spotify tracks as FLAC files
-- Specify output directory for downloaded files
-- Optional country selection for the download source
+- [x] Spotify
+- [ ] Qobuz
+- [ ] Tidal
+- [ ] Soundcloud
+- [ ] Deezer
+- [ ] Amazon Music
+- [ ] Beatport
 
 ## Installation
 
