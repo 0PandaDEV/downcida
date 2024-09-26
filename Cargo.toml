@@ -1,6 +1,6 @@
 [package]
 name = "downcida"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "A Rust crate to download audio files using the Lucida API"
 license = "MIT"

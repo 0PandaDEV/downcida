@@ -4,6 +4,7 @@ Downcida is a Rust crate that allows you to download Spotify tracks using the [L
 
 ## Features
 
+- [x] Different download Formats (FLAC, WAV, OGG, OPUS, M4A, MP3 e.g)
 - [x] Spotify
 - [ ] Qobuz
 - [ ] Tidal
@@ -18,7 +19,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-downcida = "0.1.1"
+downcida = "0.1.2"
 ```
 
 ## Usage
