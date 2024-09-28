@@ -1,6 +1,6 @@
-# Downcida
+### <ins>**This crate does currently not work because of a Token that is needed! see [#1](https://github.com/0PandaDEV/downcida/issues/1)**</ins>
 
-<ins>**This project does not work becuase of a Token that is needed see [#1](https://github.com/0PandaDEV/downcida/issues/1)**</ins>
+# Downcida
 
 Downcida is a Rust crate that allows you to download Spotify tracks using the [Lucida API](https://lucida.to/). It provides a simple interface to download audio files from Spotify tracks and save them to a specified directory.
 
