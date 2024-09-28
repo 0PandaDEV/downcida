@@ -113,8 +113,8 @@ impl Downcida {
             "metadata": false,
             "private": true,
             "token": {
-                "expiry": 1727419066,
-                "primary": "XLj8xzbZJSfloOrw-XUmNGAmG6k"
+                "expiry": 1727529052,
+                "primary": "qwUGICHFtvwf98Jfn5m3L6E_O5U"
             },
             "upload": {
                 "enabled": false,

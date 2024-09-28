@@ -21,7 +21,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-downcida = "0.1.2"
+downcida = "0.1.3"
 ```
 
 ## Usage
